@@ -40,7 +40,26 @@ Compress-Archive -Path .\cda_extracted\* -DestinationPath .\cda_extracted_full_e
 - `cda_extracted\manifest\artifacts.jsonl`
 - `cda_extracted\clone_workspace\manifest\clone_summary.json`
 
-## 6) Git / LFS Notes
+## 6) Verification
+
+Run deterministic reproducibility checks (hard-fail on any drift):
+
+```powershell
+node .\verify-cda-repro.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted"
+```
+
+Machine-readable output:
+
+```powershell
+node .\verify-cda-repro.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --json
+```
+
+Exit codes:
+
+- `0` = all checks passed
+- `1` = at least one blocking check failed
+
+## 7) Git / LFS Notes
 
 - This repo tracks heavy binaries with Git LFS (`.zip`, `.swf`, `.bin`, `.abc`, `.zlib`, `.raw`, `.jpg`).
 - Push with:

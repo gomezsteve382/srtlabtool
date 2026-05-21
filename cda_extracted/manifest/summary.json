@@ -25,7 +25,7 @@
     "parseErrors": []
   },
   "reproducibility": {
-    "totalArtifacts": 1358,
+    "totalArtifacts": 1357,
     "deterministicNaming": true,
     "contentAddressedBySha256": true
   },
