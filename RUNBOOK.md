@@ -54,10 +54,22 @@ Machine-readable output:
 node .\verify-cda-repro.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --json
 ```
 
+Write verification report file:
+
+```powershell
+node .\verify-cda-repro.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --json --out ".\verify-cda-report.json"
+```
+
 Exit codes:
 
 - `0` = all checks passed
 - `1` = at least one blocking check failed
+
+Run full verifier suite (baseline + tamper-fail scenarios with automatic restore):
+
+```powershell
+node .\run-cda-verifier-suite.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --json
+```
 
 ## 7) Git / LFS Notes
 

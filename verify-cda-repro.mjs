@@ -10,6 +10,7 @@ function parseArgs(argv) {
   const out = {
     root: DEFAULT_ROOT,
     json: false,
+    outFile: null,
   };
   for (let i = 2; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -18,6 +19,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === "--json") {
       out.json = true;
+    } else if (arg === "--out" && argv[i + 1]) {
+      out.outFile = argv[i + 1];
+      i += 1;
     } else if (arg === "--help" || arg === "-h") {
       out.help = true;
     }
@@ -28,10 +32,21 @@ function parseArgs(argv) {
 function usage() {
   return [
     "Usage:",
-    "  node verify-cda-repro.mjs [--root <cda_extracted>] [--json]",
+    "  node verify-cda-repro.mjs [--root <cda_extracted>] [--json] [--out <report.json>]",
     "",
     `Default root: ${DEFAULT_ROOT}`,
   ].join("\n");
+}
+
+function stableWrite(file, content) {
+  const next = Buffer.from(content, "utf8");
+  if (fs.existsSync(file)) {
+    const prev = fs.readFileSync(file);
+    if (Buffer.compare(prev, next) === 0) return "skipped";
+  }
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, next);
+  return "written";
 }
 
 function existsOrFail(file, label) {
@@ -92,6 +107,7 @@ function pass(checks, name, details) {
 function verify(root) {
   const checks = [];
   const failures = [];
+  const startMs = Date.now();
 
   const summaryPath = path.join(root, "manifest", "summary.json");
   const tagsPath = path.join(root, "manifest", "tags.jsonl");
@@ -293,6 +309,12 @@ function verify(root) {
       checks,
       failures: failures.length > 0 ? failures : [{ name: "fatal", details: err.message }],
       error: err.message,
+      stats: {
+        checkCount: checks.length,
+        passCount: checks.filter((c) => c.ok).length,
+        failCount: checks.filter((c) => !c.ok).length,
+        durationMs: Date.now() - startMs,
+      },
     };
   }
 
@@ -301,6 +323,12 @@ function verify(root) {
     root,
     checks,
     failures: [],
+    stats: {
+      checkCount: checks.length,
+      passCount: checks.filter((c) => c.ok).length,
+      failCount: 0,
+      durationMs: Date.now() - startMs,
+    },
   };
 }
 
@@ -330,6 +358,14 @@ function main() {
   }
   const root = path.resolve(args.root);
   const result = verify(root);
+  if (args.outFile) {
+    const outPath = path.resolve(args.outFile);
+    const writeStatus = stableWrite(outPath, `${JSON.stringify(result, null, 2)}\n`);
+    result.report = {
+      outPath,
+      writeStatus,
+    };
+  }
   if (args.json) {
     console.log(JSON.stringify(result, null, 2));
   } else {

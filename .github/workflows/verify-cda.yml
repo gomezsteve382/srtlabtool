@@ -20,4 +20,11 @@ jobs:
           node-version: "20"
 
       - name: Run CDA reproducibility verifier
-        run: node ./verify-cda-repro.mjs --root ./cda_extracted --json
+        run: node ./verify-cda-repro.mjs --root ./cda_extracted --json --out ./verify-cda-report.json
+
+      - name: Upload verifier report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-cda-report
+          path: ./verify-cda-report.json
