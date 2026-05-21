@@ -71,6 +71,12 @@ Run full verifier suite (baseline + tamper-fail scenarios with automatic restore
 node .\run-cda-verifier-suite.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --json
 ```
 
+Record a provenance snapshot (hash-linked verification record):
+
+```powershell
+node .\record-cda-verify-snapshot.mjs --root "C:\Users\gomez\Documents\Codex\2026-05-20\files-mentioned-by-the-user-srt\cda_extracted" --out-dir ".\verification_history" --json
+```
+
 ## 7) Git / LFS Notes
 
 - This repo tracks heavy binaries with Git LFS (`.zip`, `.swf`, `.bin`, `.abc`, `.zlib`, `.raw`, `.jpg`).
