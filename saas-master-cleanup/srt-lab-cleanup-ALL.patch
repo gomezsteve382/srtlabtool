@@ -1,7 +1,7 @@
 From 1a950cfcf9856b48c24aca9da8b336b3d1943cc9 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 03:57:07 +0000
-Subject: [PATCH 01/13] Consolidate SEC16/SEC6 derivation into one verified
+Subject: [PATCH 01/14] Consolidate SEC16/SEC6 derivation into one verified
  core (immoSecret.js)
 
 The BCM<->RFH SEC16 byte-reversal and PCM SEC6 slice were hand-reimplemented
@@ -438,7 +438,7 @@ index 0c2fbcd..1aee5d0 100644
 From adcfec34cc3f7ae3e2e98f76dd06065428db25ab Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:09:43 +0000
-Subject: [PATCH 02/13] Stage A: regroup the 51-tab drawer into 6 categories
+Subject: [PATCH 02/14] Stage A: regroup the 51-tab drawer into 6 categories
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -540,7 +540,7 @@ index 5a88cc5..88f3717 100644
 From 1b84ed07da90c5126b2a4ce05f2bf1ecb7cc2cb5 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:31:06 +0000
-Subject: [PATCH 03/13] Trust ledger: honest grounding for every seed-key
+Subject: [PATCH 03/14] Trust ledger: honest grounding for every seed-key
  algorithm
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -823,7 +823,7 @@ index 8d2f45e..d8c994a 100644
 From 8014cdb1df71c78c300a5a8b55bd368b3677e0cd Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:34:02 +0000
-Subject: [PATCH 04/13] Safety gate: dealer-lockout 0xFF00 erase RID can't fire
+Subject: [PATCH 04/14] Safety gate: dealer-lockout 0xFF00 erase RID can't fire
  by accident
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -984,7 +984,7 @@ index 9095477..e25ae1f 100644
 From b474edc024579a168cb82d4e75c4c2b3764b90de Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:36:08 +0000
-Subject: [PATCH 05/13] Honesty: correct overstated provenance in canflashAlgos
+Subject: [PATCH 05/14] Honesty: correct overstated provenance in canflashAlgos
  + tabReferences
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1085,7 +1085,7 @@ index 73f4d40..d14c839 100644
 From 95e0ca4a27cb789ccae7aff2fbfd5b55762d0423 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:38:38 +0000
-Subject: [PATCH 06/13] SeedTab: show a confidence dot per algorithm from the
+Subject: [PATCH 06/14] SeedTab: show a confidence dot per algorithm from the
  trust ledger
 
 Every seed-key algorithm in the picker now carries a green/amber/red dot
@@ -1145,7 +1145,7 @@ index 0b3eb58..4a2c79e 100644
 From 90ab4853f2c80b66f7e59926d225825b3b59691c Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 13:46:09 +0000
-Subject: [PATCH 07/13] =?UTF-8?q?Stage=20B:=20marryModule()=20engine=20?=
+Subject: [PATCH 07/14] =?UTF-8?q?Stage=20B:=20marryModule()=20engine=20?=
  =?UTF-8?q?=E2=80=94=20one=20verified=20path=20for=20marrying=20modules?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1527,7 +1527,7 @@ index 0000000..dd21d49
 From efbf912a52cec0926b750b185e9e00f2dc31c0f6 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:10:07 +0000
-Subject: [PATCH 08/13] Stage C: unified engine-backed Marry/Sync tab; retire 2
+Subject: [PATCH 08/14] Stage C: unified engine-backed Marry/Sync tab; retire 2
  duplicates
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1815,7 +1815,7 @@ index 0000000..c16d350
 From 26aeaeee3631d7f2ec2684c9d192155e34ea5fbf Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:12:22 +0000
-Subject: [PATCH 09/13] =?UTF-8?q?Deprecate=20dead=20TwinTab=20=E2=80=94=20?=
+Subject: [PATCH 09/14] =?UTF-8?q?Deprecate=20dead=20TwinTab=20=E2=80=94=20?=
  =?UTF-8?q?neutralize=20the=20last=20bypass-securityBytes=20writer?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1854,7 +1854,7 @@ index 8980e45..51c74d6 100644
 From 67e10f90bf8c1959228384b21ba34497fa47ce02 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:18:47 +0000
-Subject: [PATCH 10/13] ModuleSync: gate the UNVERIFIED XC2268 SEC16 write +
+Subject: [PATCH 10/14] ModuleSync: gate the UNVERIFIED XC2268 SEC16 write +
  surface confidence
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1926,7 +1926,7 @@ index c2bfd7d..083649d 100644
 From f1f18f479c6171676951ed4b5e9af60d5f0ef078 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:38:07 +0000
-Subject: [PATCH 11/13] Make the engine resolver a proven superset; delegate
+Subject: [PATCH 11/14] Make the engine resolver a proven superset; delegate
  ModuleSync to it
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -2510,7 +2510,7 @@ index 083649d..6279970 100644
 From 172afbffdf01ce6963f27994f06d2d321244529a Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:53:24 +0000
-Subject: [PATCH 12/13] =?UTF-8?q?Stage=20D:=20marryAll()=20=E2=80=94=20one?=
+Subject: [PATCH 12/14] =?UTF-8?q?Stage=20D:=20marryAll()=20=E2=80=94=20one?=
  =?UTF-8?q?-shot=203-module=20marry=20(BCM=20->=20RFHUB=20+=20PCM)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -2974,7 +2974,7 @@ index c16d350..511d3a5 100644
 From 6a0cf4c5c8fab82563c4f6b916f2cdf54a9593bd Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:56:54 +0000
-Subject: [PATCH 13/13] marryAll: add direct RFHUB <-> PCM verification pass
+Subject: [PATCH 13/14] marryAll: add direct RFHUB <-> PCM verification pass
  (Manus step 3)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3024,6 +3024,125 @@ index ec8ed6a..fadadb5 100644
    return { ok: checks.every((c) => c.pass) && files.length > 0, source: 'BCM', results, crossSync, checks, files };
  }
  
+-- 
+2.43.0
+
+
+From f361ed31af54bfd6467f7f0a6282f8c62b0445ef Mon Sep 17 00:00:00 2001
+From: srtlab <gomezsteve1379@gmail.com>
+Date: Thu, 11 Jun 2026 15:11:28 +0000
+Subject: [PATCH 14/14] Fix engParseRfh Gen1 SEC16 offset (0x0226 -> 0x00AE);
+ reconcile with engine
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Delegation-discipline proof for the RFH-source sync path found a real bug:
+engParseRfh read Gen1 SEC16 at 0x0226 (the key-table / CHAR_MASTER region),
+while parseModule, securityBytes.writeRfhSec16Gen1 (the WRITER), pairingRepair
+and rfhPcmPair all use 0x00AE. So Gen1 RFH sync read the master from a
+different offset than the writer writes to — internally inconsistent.
+
+Aligned engParseRfh Gen1 to 0x00AE / 0x00C0. Now ModuleSync's RFH master
+matches the engine + writer (proven: Gen2, Gen2-EEE, Gen1 all AGREE), so the
+RFH-source actions resolve the same secret everything else does. CI test
+imports the real engParseRfh and locks the equivalence. Gen2 path unchanged.
+
+NOTE: 0x00AE is confirmed by 4 modules incl. the writer; a real Gen1 24C16
+bench dump would be the final ground-truth confirmation.
+---
+ .../rfhSec16Resolve.equivalence.test.js       | 46 +++++++++++++++++++
+ artifacts/srt-lab/src/tabs/ModuleSync.jsx     | 18 +++++---
+ 2 files changed, 58 insertions(+), 6 deletions(-)
+ create mode 100644 artifacts/srt-lab/src/lib/__tests__/rfhSec16Resolve.equivalence.test.js
+
+diff --git a/artifacts/srt-lab/src/lib/__tests__/rfhSec16Resolve.equivalence.test.js b/artifacts/srt-lab/src/lib/__tests__/rfhSec16Resolve.equivalence.test.js
+new file mode 100644
+index 0000000..ca36677
+--- /dev/null
++++ b/artifacts/srt-lab/src/lib/__tests__/rfhSec16Resolve.equivalence.test.js
+@@ -0,0 +1,46 @@
++import { describe, it, expect } from 'vitest';
++import { engParseRfh } from '../../tabs/ModuleSync.jsx';
++import { parseModule } from '../parseModule.js';
++
++/* ModuleSync's RFH master secret (engParseRfh.sec16.slot1) must match the
++ * engine's RFHUB resolution (parseModule sec16s[0].raw) so the RFH-source sync
++ * actions resolve the SAME secret the canonical writer (writeRfhSec16Gen1/Gen2)
++ * writes. Locks the fix for the Gen1 0x0226→0x00AE offset bug, where the master
++ * was read from the key-table region instead of the SEC16 slot. */
++
++const arr = (x) => (x ? Array.from(x) : x);
++const SECRET = Uint8Array.from({ length: 16 }, (_, i) => (i * 13 + 5) & 0xff);
++
++const engSlot1 = (b) => engParseRfh(b, 'rfh.bin')?.sec16?.slot1;
++const engineSlot1 = (b) => parseModule(b, 'rfh')?.sec16s?.[0]?.raw;
++
++describe('engParseRfh.sec16.slot1 ≡ parseModule RFHUB sec16s[0] (writer-aligned)', () => {
++  it('Gen2 (canonical banner, secret @0x050E)', () => {
++    const b = new Uint8Array(4096);
++    b[0x500] = 0xAA; b[0x501] = 0x55; b[0x502] = 0x31; b[0x503] = 0x01;
++    b.set(SECRET, 0x050E); b.set(SECRET, 0x0522);
++    expect(arr(engSlot1(b)).slice(0, 16)).toEqual(arr(engineSlot1(b)).slice(0, 16));
++    expect(arr(engSlot1(b)).slice(0, 16)).toEqual(arr(SECRET));
++  });
++
++  it('Gen2-EEE (non-canonical banner, secret @0x050E by SIZE)', () => {
++    const b = new Uint8Array(4096);
++    b[0x500] = 0xFF; b[0x501] = 0xFF; b[0x502] = 0x00; b[0x503] = 0x00;
++    b.set(SECRET, 0x050E); b.set(SECRET, 0x0522);
++    expect(arr(engSlot1(b)).slice(0, 16)).toEqual(arr(engineSlot1(b)).slice(0, 16));
++  });
++
++  it('Gen1 24C16 — reads SEC16 from 0x00AE (writer offset), not 0x0226', () => {
++    const b = new Uint8Array(2048);
++    b.set(SECRET, 0x00AE); b.set(SECRET, 0x00C0);
++    expect(arr(engSlot1(b)).slice(0, 16)).toEqual(arr(SECRET));          // reads the right place
++    expect(arr(engSlot1(b)).slice(0, 16)).toEqual(arr(engineSlot1(b)).slice(0, 16));
++  });
++
++  it('Gen1 — a secret at the OLD 0x0226 region is NOT mistaken for SEC16', () => {
++    const b = new Uint8Array(2048);
++    b.set(SECRET, 0x0226); // key-table region, not SEC16
++    const slot = engSlot1(b);
++    expect(slot.every((x) => x === 0x00)).toBe(true); // 0x00AE is blank → no phantom secret
++  });
++});
+diff --git a/artifacts/srt-lab/src/tabs/ModuleSync.jsx b/artifacts/srt-lab/src/tabs/ModuleSync.jsx
+index 6279970..211333f 100644
+--- a/artifacts/srt-lab/src/tabs/ModuleSync.jsx
++++ b/artifacts/srt-lab/src/tabs/ModuleSync.jsx
+@@ -383,18 +383,24 @@ export function engParseRfh(bytes, filename) {
+     const g2Pop = !s1.every(b => b === 0xFF) && !s1.every(b => b === 0x00);
+     r.format = 'gen2';
+     r.sec16  = { slot1: s1, slot2: s2, match: aeq(s1, s2), virgin: s1.every(b => b === 0xFF), offsets: [0x050E, 0x0522] };
+-    if (!g2Pop && bytes.length >= 0x024C) {
++    if (!g2Pop && bytes.length >= 0x00D0) {
+       /* Gen2 header but Gen2 slots are empty — fall back to reading Gen1 area */
+-      const g1 = bytes.slice(0x0226, 0x0236);
++      const g1 = bytes.slice(0x00AE, 0x00BE);
+       if (!g1.every(b => b === 0xFF) && !g1.every(b => b === 0x00)) {
+         r.format = 'gen2-hybrid';
+       }
+     }
+-  } else if (bytes.length >= 0x024C) {
+-    const s1 = bytes.slice(0x0226, 0x0236);   /* 16 bytes (skip 2-byte trailer) */
+-    const s2 = bytes.slice(0x023A, 0x024A);
++  } else if (bytes.length >= 0x00D0) {
++    /* Gen1 24C16 SEC16 lives at 0x00AE / 0x00C0 — matching parseModule.js,
++     * securityBytes.writeRfhSec16Gen1 (the WRITER), pairingRepair.js and
++     * rfhPcmPair.js. The previous 0x0226 here was a latent bug: it read from
++     * the key-table region (CHAR_MASTER_OFFSET = 0x0226), so the master was
++     * read from a different offset than the writer writes to — Gen1 RFH sync
++     * was internally inconsistent. Aligned to the canonical 0x00AE. */
++    const s1 = bytes.slice(0x00AE, 0x00BE);   /* 16 bytes */
++    const s2 = bytes.slice(0x00C0, 0x00D0);
+     r.format = 'gen1';
+-    r.sec16  = { slot1: s1, slot2: s2, match: aeq(s1, s2), virgin: s1.every(b => b === 0xFF), offsets: [0x0226, 0x023A] };
++    r.sec16  = { slot1: s1, slot2: s2, match: aeq(s1, s2), virgin: s1.every(b => b === 0xFF), offsets: [0x00AE, 0x00C0] };
+   }
+ 
+   const text = new TextDecoder('ascii', { fatal: false }).decode(bytes);
 -- 
 2.43.0
 
