@@ -1,7 +1,7 @@
 From 1a950cfcf9856b48c24aca9da8b336b3d1943cc9 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 03:57:07 +0000
-Subject: [PATCH 01/18] Consolidate SEC16/SEC6 derivation into one verified
+Subject: [PATCH 01/19] Consolidate SEC16/SEC6 derivation into one verified
  core (immoSecret.js)
 
 The BCM<->RFH SEC16 byte-reversal and PCM SEC6 slice were hand-reimplemented
@@ -438,7 +438,7 @@ index 0c2fbcd..1aee5d0 100644
 From adcfec34cc3f7ae3e2e98f76dd06065428db25ab Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:09:43 +0000
-Subject: [PATCH 02/18] Stage A: regroup the 51-tab drawer into 6 categories
+Subject: [PATCH 02/19] Stage A: regroup the 51-tab drawer into 6 categories
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -540,7 +540,7 @@ index 5a88cc5..88f3717 100644
 From 1b84ed07da90c5126b2a4ce05f2bf1ecb7cc2cb5 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:31:06 +0000
-Subject: [PATCH 03/18] Trust ledger: honest grounding for every seed-key
+Subject: [PATCH 03/19] Trust ledger: honest grounding for every seed-key
  algorithm
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -823,7 +823,7 @@ index 8d2f45e..d8c994a 100644
 From 8014cdb1df71c78c300a5a8b55bd368b3677e0cd Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:34:02 +0000
-Subject: [PATCH 04/18] Safety gate: dealer-lockout 0xFF00 erase RID can't fire
+Subject: [PATCH 04/19] Safety gate: dealer-lockout 0xFF00 erase RID can't fire
  by accident
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -984,7 +984,7 @@ index 9095477..e25ae1f 100644
 From b474edc024579a168cb82d4e75c4c2b3764b90de Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:36:08 +0000
-Subject: [PATCH 05/18] Honesty: correct overstated provenance in canflashAlgos
+Subject: [PATCH 05/19] Honesty: correct overstated provenance in canflashAlgos
  + tabReferences
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1085,7 +1085,7 @@ index 73f4d40..d14c839 100644
 From 95e0ca4a27cb789ccae7aff2fbfd5b55762d0423 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 04:38:38 +0000
-Subject: [PATCH 06/18] SeedTab: show a confidence dot per algorithm from the
+Subject: [PATCH 06/19] SeedTab: show a confidence dot per algorithm from the
  trust ledger
 
 Every seed-key algorithm in the picker now carries a green/amber/red dot
@@ -1145,7 +1145,7 @@ index 0b3eb58..4a2c79e 100644
 From 90ab4853f2c80b66f7e59926d225825b3b59691c Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 13:46:09 +0000
-Subject: [PATCH 07/18] =?UTF-8?q?Stage=20B:=20marryModule()=20engine=20?=
+Subject: [PATCH 07/19] =?UTF-8?q?Stage=20B:=20marryModule()=20engine=20?=
  =?UTF-8?q?=E2=80=94=20one=20verified=20path=20for=20marrying=20modules?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1527,7 +1527,7 @@ index 0000000..dd21d49
 From efbf912a52cec0926b750b185e9e00f2dc31c0f6 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:10:07 +0000
-Subject: [PATCH 08/18] Stage C: unified engine-backed Marry/Sync tab; retire 2
+Subject: [PATCH 08/19] Stage C: unified engine-backed Marry/Sync tab; retire 2
  duplicates
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1815,7 +1815,7 @@ index 0000000..c16d350
 From 26aeaeee3631d7f2ec2684c9d192155e34ea5fbf Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:12:22 +0000
-Subject: [PATCH 09/18] =?UTF-8?q?Deprecate=20dead=20TwinTab=20=E2=80=94=20?=
+Subject: [PATCH 09/19] =?UTF-8?q?Deprecate=20dead=20TwinTab=20=E2=80=94=20?=
  =?UTF-8?q?neutralize=20the=20last=20bypass-securityBytes=20writer?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1854,7 +1854,7 @@ index 8980e45..51c74d6 100644
 From 67e10f90bf8c1959228384b21ba34497fa47ce02 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:18:47 +0000
-Subject: [PATCH 10/18] ModuleSync: gate the UNVERIFIED XC2268 SEC16 write +
+Subject: [PATCH 10/19] ModuleSync: gate the UNVERIFIED XC2268 SEC16 write +
  surface confidence
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1926,7 +1926,7 @@ index c2bfd7d..083649d 100644
 From f1f18f479c6171676951ed4b5e9af60d5f0ef078 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:38:07 +0000
-Subject: [PATCH 11/18] Make the engine resolver a proven superset; delegate
+Subject: [PATCH 11/19] Make the engine resolver a proven superset; delegate
  ModuleSync to it
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -2510,7 +2510,7 @@ index 083649d..6279970 100644
 From 172afbffdf01ce6963f27994f06d2d321244529a Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:53:24 +0000
-Subject: [PATCH 12/18] =?UTF-8?q?Stage=20D:=20marryAll()=20=E2=80=94=20one?=
+Subject: [PATCH 12/19] =?UTF-8?q?Stage=20D:=20marryAll()=20=E2=80=94=20one?=
  =?UTF-8?q?-shot=203-module=20marry=20(BCM=20->=20RFHUB=20+=20PCM)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -2974,7 +2974,7 @@ index c16d350..511d3a5 100644
 From 6a0cf4c5c8fab82563c4f6b916f2cdf54a9593bd Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 14:56:54 +0000
-Subject: [PATCH 13/18] marryAll: add direct RFHUB <-> PCM verification pass
+Subject: [PATCH 13/19] marryAll: add direct RFHUB <-> PCM verification pass
  (Manus step 3)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3031,7 +3031,7 @@ index ec8ed6a..fadadb5 100644
 From f361ed31af54bfd6467f7f0a6282f8c62b0445ef Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 15:11:28 +0000
-Subject: [PATCH 14/18] Fix engParseRfh Gen1 SEC16 offset (0x0226 -> 0x00AE);
+Subject: [PATCH 14/19] Fix engParseRfh Gen1 SEC16 offset (0x0226 -> 0x00AE);
  reconcile with engine
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3150,7 +3150,7 @@ index 6279970..211333f 100644
 From f1eff85f5e7af3452e3370df8832b3a9c4c6d6cb Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 15:29:34 +0000
-Subject: [PATCH 15/18] =?UTF-8?q?Activate=20GPEC2A=20File-Unlock=20?=
+Subject: [PATCH 15/19] =?UTF-8?q?Activate=20GPEC2A=20File-Unlock=20?=
  =?UTF-8?q?=E2=80=94=20recover=20real=20patterns=20from=20a=20genuine=20un?=
  =?UTF-8?q?lock?=
 MIME-Version: 1.0
@@ -3392,7 +3392,7 @@ index 4c7601b..a894080 100644
 From cfd05736f8acfd604cee2bdd8c8f3093779fb7a1 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 16:17:56 +0000
-Subject: [PATCH 16/18] =?UTF-8?q?Lock=20marryModule=20=E2=89=A1=20ModuleSy?=
+Subject: [PATCH 16/19] =?UTF-8?q?Lock=20marryModule=20=E2=89=A1=20ModuleSy?=
  =?UTF-8?q?nc=20writer=20sequence=20in=20CI=20(single-write-path)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3482,7 +3482,7 @@ index 0000000..a7ef339
 From 5f9153aa979720aafcf5c25ce409f0dd4d0a3885 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 20:20:44 +0000
-Subject: [PATCH 17/18] checksumScanner: tag confidence to filter coincidental
+Subject: [PATCH 17/19] checksumScanner: tag confidence to filter coincidental
  false positives
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3640,7 +3640,7 @@ index 7dac3a2..b69fc85 100644
 From da76c74ee54bf1f7fdad5008ab3cac16bb579774 Mon Sep 17 00:00:00 2001
 From: srtlab <gomezsteve1379@gmail.com>
 Date: Thu, 11 Jun 2026 21:09:02 +0000
-Subject: [PATCH 18/18] GPEC immo: surface the SKIM (0x0011) immobilizer enable
+Subject: [PATCH 18/19] GPEC immo: surface the SKIM (0x0011) immobilizer enable
  byte
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -3777,6 +3777,48 @@ index 10295a7..6283337 100644
  }
  
  /* ── Donor → PCM SEC6 derivation ─────────────────────────────────────────
+-- 
+2.43.0
+
+
+From b7da8d0ac65c140e48bcbd07bdc62fca9a60dd9e Mon Sep 17 00:00:00 2001
+From: srtlab <gomezsteve1379@gmail.com>
+Date: Thu, 11 Jun 2026 22:42:54 +0000
+Subject: [PATCH 19/19] Gpec2aImmoPanel: show the SKIM immobilizer-enable card
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Surface the new analyzer skim field as a dedicated card (green ENABLED / red
+DISABLED-bypassed) between the SEC6 and IMMO-pattern cards, so the operator
+sees at a glance whether the immobilizer is actually enforced — not just
+whether the SEC6 secret is set. The bypass WARNING note already renders in the
+Notes card. esbuild-validated (data layer + CI test landed in 0018).
+---
+ artifacts/srt-lab/src/components/Gpec2aImmoPanel.jsx | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/artifacts/srt-lab/src/components/Gpec2aImmoPanel.jsx b/artifacts/srt-lab/src/components/Gpec2aImmoPanel.jsx
+index aac02cd..b35c856 100644
+--- a/artifacts/srt-lab/src/components/Gpec2aImmoPanel.jsx
++++ b/artifacts/srt-lab/src/components/Gpec2aImmoPanel.jsx
+@@ -144,6 +144,16 @@ export default function Gpec2aImmoPanel({mod, donorMods = [], onPatched = null})
+         spaced: true,
+         sub: "@ 0x3C8 · State: " + (a.sec6 ? a.sec6.state : "—"),
+       },
++      {
++        title: "SKIM (Immobilizer Enable)",
++        accent: a.skim ? (a.skim.enabled ? C.gn : C.er) : C.tm,
++        badge: a.skim ? {value: a.skim.state, good: a.skim.enabled} : undefined,
++        value: a.skim ? a.skim.hex : "—",
++        spaced: true,
++        sub: a.skim
++          ? "@ 0x0011 · " + (a.skim.enabled ? "ENABLED — secret enforced" : "DISABLED — immo BYPASSED (SEC6 sync not enforced)")
++          : "@ 0x0011 · —",
++      },
+       {
+         title: "Current IMMO Pattern",
+         accent: a.immo?.synced ? C.gn : C.wn,
 -- 
 2.43.0
 
