@@ -21,10 +21,13 @@ It touches:
   engine refuses real 2014 LX BCMs.**
 - `lib/engBcmParse.js` — `engParseBcm` extracted to a pure, testable module.
 - `tabs/ModuleSync.jsx` — re-export of the extracted parser, the XC2268
-  unverified-write gate, and delegation of BCM resolution to the engine.
+  unverified-write gate, delegation of BCM resolution to the engine, and the
+  **Gen1 RFHUB SEC16 offset fix** (`engParseRfh` read `0x0226` = the key-table
+  region; aligned to `0x00AE` where the writer + 3 other modules read/write).
   *(If your `ModuleSync.jsx` is unmodified base, this applies; if you changed
-  it, take the three hunks by hand — they're small.)*
-- new tests: `marryAll.test.js`, `bcmSec16Resolve.equivalence.test.js`.
+  it, take the hunks by hand — they're small and localized.)*
+- new tests: `marryAll.test.js`, `bcmSec16Resolve.equivalence.test.js`,
+  `rfhSec16Resolve.equivalence.test.js`.
 
 ## 2. PORT the UI (don't apply my tab hunks)
 Wire these into **your `MarryModuleTab`** instead of applying `MarrySyncTab`:
