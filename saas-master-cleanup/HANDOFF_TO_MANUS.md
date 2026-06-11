@@ -58,4 +58,3 @@ Base commit these patches apply on top of: `4a6a06d` ("Add ECU catalog…").
   the Charger key-table formula, and the whole marry/parse path — bench-grounded.
 - **Flagged (now labeled + gated, not silenced):** cda6, xtea_sgw, the canflash
   catalog, GPEC q2/q3/q4, dealerLockoutBypass, XC2268/Gen1 writers.
-</content>
