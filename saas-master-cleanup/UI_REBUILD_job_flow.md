@@ -53,8 +53,33 @@ repo root: `git am saas-master-cleanup/patches/0022-*.patch saas-master-cleanup/
 (or `git apply` the diffs). Then `node scripts/generate-quickref-data.mjs` once
 so `src/lib/attachedAssetMismatches.generated.json` exists before `pnpm test`.
 
-## Still open (next session)
-- `dumps` is the REFERENCE door's primary, so landing on Diagnose lights the
-  REFERENCE door — minor. A dedicated HOME door would clean it up.
-- Per-tab content density (inside each mode) is unchanged; the nav is fixed,
-  the individual tab bodies are the next pass if wanted.
+## Stage 3 — dedicated HOME door (patch 0024)
+`dumps` (Diagnose) is now a **HOME** button pinned above the six job doors,
+removed from every job (`JOB_OF.dumps` is undefined) and from the drawer — so
+landing on Diagnose lights HOME, not REFERENCE. REFERENCE's primary is now
+`backups` (given a stable `backups-tab` root testid). Nav guard gains a HOME
+test (16 nav tests green).
+
+## Stage 4 — per-tab body density (patch 0025)
+- **`components/Section.jsx`** (new, unit-tested) — reusable collapsible block.
+  Default-open so adoption never breaks existing content/tests; the title stays
+  visible while collapsed so a safety headline never hides behind a fold.
+- **BcmConfigTab** — opens as a collapsed **index**: only the first of the ten
+  themed categories expands on load; a live search force-opens every matching
+  section. (It already had bespoke collapsible hero sections — this just changes
+  the default + adds search-reveal.) Ten-banner scroll → one-screen index.
+- **ProxiTab** — adopts `Section` for the "two panels — different write
+  semantics" reference banner; safety headline stays in the collapsed header.
+
+### Density rollout — next targets (mechanical, use `Section`)
+Worst remaining flat-wall bodies: `KeyProgTab` (1306 ln), `FcaModuleInspector`
+(1435 ln), `ModuleSync` (~2400-ln body — wrap its top-level card groups, run its
+~8 test files after). Pattern: wrap secondary/reference regions in `<Section
+defaultOpen={false}>`, keep the primary action above the fold.
+
+## Test status
+Full suite: **5843 passed**, +5 new (4 Section unit + 1 HOME nav). The 7
+pre-existing failures (FcaModuleInspector.workspace, gpec2aImmoPanel,
+keyPhotoImport, keyProgWizard.rfhSec16Write, rfhubGen2SizeDetect,
+checksum.fixtures, corruptReject) were confirmed failing on a clean pre-rebuild
+tree — fixture/OCR/SEC16/generated-data issues, untouched by any of this work.
