@@ -270,7 +270,22 @@ function verify(root) {
 
     const cloneSummary = readJson(cloneSummaryPath, "clone summary");
     for (const frame of cloneSummary.frames || []) {
-      const frameDir = frame?.paths?.frameDir;
+      // The clone summary records `paths.frameDir` as an absolute
+      // authoring-machine path (Windows, e.g. C:\Users\...). Resolve the
+      // frame dir relative to `root` so the verifier is portable across
+      // machines / CI; only fall back to the recorded absolute path when the
+      // relative one doesn't exist. (The frame name — "frame1"/"frame2" — is
+      // the directory under clone_workspace; basename of the recorded path is
+      // the cross-platform fallback for the segment.)
+      const recordedFrameDir = frame?.paths?.frameDir;
+      const frameSeg = frame.frame ||
+        (recordedFrameDir && path.basename(recordedFrameDir.replace(/\\/g, "/")));
+      const relFrameDir = frameSeg
+        ? path.join(root, "clone_workspace", frameSeg)
+        : null;
+      const frameDir = (relFrameDir && fs.existsSync(relFrameDir))
+        ? relFrameDir
+        : recordedFrameDir;
       if (!frameDir) {
         fail(checks, failures, "clone.frame_paths", "frameDir missing in clone summary");
       }
