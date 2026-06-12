@@ -42,6 +42,12 @@ TwinTab logic + 9 new/updated tests. None of it is your MarryModuleTab.
 18. GPEC immo: surface the SKIM (0x0011) immobilizer enable byte + bypass warning
 19. Gpec2aImmoPanel: render the SKIM card
 20. KeyProgTab: gate the UNVERIFIED XC2268 SEC16 write (parity with the engine)
+21. **CommandShell: Advanced/Reference drawer → collapsible accordion.** The
+    52-item flat scroll was the worst back-end offender. Group into the 6
+    sections, default-open only the active tab's section, count badge per
+    section, dense 2-col icon+title tiles when expanded, search auto-opens
+    matching sections. **Front-page rail/landing untouched.** Pure-presentation
+    (no logic) — see `patches/0021-drawer-accordion.patch`.
 
 ## Two real bug fixes in here — do NOT skip the parseModule.js / ModuleSync.jsx hunks
 - **2014 LX BCM** legacy mirror (parseModule.js) — without it the engine refuses
