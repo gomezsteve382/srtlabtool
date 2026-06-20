@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { Scene, Asset, Palette } from "../shared/scene-script-schema.ts";
+import { isRecordMode } from "./recordMode.ts";
 
 /**
  * scenes.tsx — the 4 v2 scene components (hero, parallax_reveal, stats_grid,
@@ -113,7 +114,15 @@ function Cta({ scene }: { scene: Extract<Scene, { type: "cta" }> }) {
   return (
     <div className="scene-content cta-scene">
       <CopyBlock scene={scene} />
-      <a className="cta-button" href={scene.href ?? "#"} onClick={(e) => e.preventDefault()}>
+      <a
+        className="cta-button"
+        href={scene.href ?? "#"}
+        onClick={(e) => {
+          // Let a real href navigate in the live site; only block when there's
+          // nowhere to go, or in record mode (no navigation during capture).
+          if (!scene.href || isRecordMode()) e.preventDefault();
+        }}
+      >
         {scene.buttonLabel}
       </a>
     </div>

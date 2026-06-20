@@ -29,7 +29,11 @@ async function boot() {
     rootEl.innerHTML = `<pre style="color:#f5f3ee;background:#0a0a0c;padding:2rem;font-family:monospace;white-space:pre-wrap">Cinematic renderer failed to load:\n\n${
       e instanceof Error ? e.message : String(e)
     }</pre>`;
-    // Still signal readiness so the recorder doesn't hang forever on a bad script.
+    // Still signal readiness so the recorder doesn't hang forever on a bad
+    // script — and provide a no-op scrubber + zero duration so the recorder can
+    // fail fast in a controlled way instead of throwing on a missing function.
+    window.__setProgress = () => {};
+    window.__duration = 0;
     window.__cinematicReady = true;
   }
 }

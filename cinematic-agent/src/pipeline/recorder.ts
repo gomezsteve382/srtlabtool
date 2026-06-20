@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import { createServer, type Server } from "node:http";
 import { readFile, readFileSync } from "node:fs";
 import { existsSync } from "node:fs";
-import { extname, join, normalize } from "node:path";
+import { extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { SceneScript } from "../shared/scene-script-schema.ts";
 import { totalDurationSec } from "../shared/scene-script-schema.ts";
@@ -33,13 +33,18 @@ const MIME: Record<string, string> = {
 
 /** Minimal, dependency-free static file server rooted at `dir`. */
 function startStaticServer(dir: string): Promise<{ server: Server; port: number }> {
-  return new Promise((resolve) => {
+  const root = resolve(dir);
+  return new Promise((ready) => {
     const server = createServer((req, res) => {
       const urlPath = decodeURIComponent((req.url ?? "/").split("?")[0]);
-      let rel = normalize(urlPath).replace(/^(\.\.[/\\])+/, "");
-      if (rel === "/" || rel === "") rel = "/index.html";
-      const filePath = join(dir, rel);
-      if (!filePath.startsWith(dir)) {
+      // Make the request path relative before joining: strip leading slashes and
+      // any ../ traversal so join(root, rel) always stays under root.
+      let rel = normalize(urlPath)
+        .replace(/^([/\\])+/, "")
+        .replace(/^(\.\.[/\\])+/, "");
+      if (rel === "" || rel === ".") rel = "index.html";
+      const filePath = join(root, rel);
+      if (!filePath.startsWith(root)) {
         res.writeHead(403).end("forbidden");
         return;
       }
@@ -55,19 +60,22 @@ function startStaticServer(dir: string): Promise<{ server: Server; port: number 
     server.listen(0, "127.0.0.1", () => {
       const addr = server.address();
       const port = typeof addr === "object" && addr ? addr.port : 0;
-      resolve({ server, port });
+      ready({ server, port });
     });
   });
 }
 
 function writeToStream(stream: NodeJS.WritableStream, buf: Buffer): Promise<void> {
   return new Promise((resolve, reject) => {
-    stream.write(buf, (err) => (err ? reject(err) : undefined));
-    // Respect backpressure: resolve on drain if needed.
-    if ((stream as any).writableNeedDrain) {
-      stream.once("drain", resolve);
-    } else {
+    // The write callback surfaces async write errors; the return value tells us
+    // whether to wait for "drain" (backpressure) before resolving.
+    const flushed = stream.write(buf, (err) => {
+      if (err) reject(err);
+    });
+    if (flushed) {
       resolve();
+    } else {
+      stream.once("drain", resolve);
     }
   });
 }

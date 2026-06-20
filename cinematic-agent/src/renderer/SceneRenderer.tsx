@@ -69,6 +69,34 @@ function transitionIn(
   }
 }
 
+/** Apply a scene's out-transition as an extra tween at `at` seconds. */
+function transitionOut(
+  tl: gsap.core.Timeline,
+  content: Element,
+  kind: Scene["transition"]["out"],
+  at: number,
+  dur: number,
+) {
+  switch (kind) {
+    case "slide-up":
+      tl.to(content, { yPercent: -6, duration: dur, ease: "power2.in" }, at);
+      break;
+    case "slide-left":
+      tl.to(content, { xPercent: -8, duration: dur, ease: "power2.in" }, at);
+      break;
+    case "scale-in": // mirror of the in-scale: ease the content back out
+      tl.to(content, { scale: 1.04, duration: dur, ease: "power2.in" }, at);
+      break;
+    case "blur-in":
+      tl.to(content, { filter: "blur(14px)", duration: dur, ease: "power2.in" }, at);
+      break;
+    case "fade":
+    case "none":
+    default:
+      break; // autoAlpha tween handles fade
+  }
+}
+
 export default function SceneRenderer({ script }: { script: SceneScript }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
@@ -108,9 +136,11 @@ export default function SceneRenderer({ script }: { script: SceneScript }) {
       tl.to(sec, { autoAlpha: 1, duration: inDur, ease: "power1.out" }, cursor);
       if (content) transitionIn(tl, content, scene.transition.in, cursor, inDur);
 
-      // fade out (keep the final scene on screen)
+      // fade out + out-transition (keep the final scene on screen)
       if (!isLast) {
-        tl.to(sec, { autoAlpha: 0, duration: outDur, ease: "power1.in" }, cursor + dur - outDur);
+        const outAt = cursor + dur - outDur;
+        tl.to(sec, { autoAlpha: 0, duration: outDur, ease: "power1.in" }, outAt);
+        if (content) transitionOut(tl, content, scene.transition.out, outAt, outDur);
       }
 
       // parallax layers within the scene
