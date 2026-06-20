@@ -8,3 +8,4 @@ renders/
 # local render/debug scratch
 /diag.*
 /render-demo.mjs
+/timing.*
