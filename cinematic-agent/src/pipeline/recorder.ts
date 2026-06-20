@@ -126,8 +126,20 @@ async function openRenderer(
   // full "load"/"networkidle" wait — both can hang behind blocked or keep-alive
   // requests (e.g. webfonts) in restricted networks.
   await page.goto(recordUrl, { waitUntil: "domcontentloaded", timeout: 60_000 });
-  // Wait for the renderer to signal it has mounted, loaded images, and built the timeline.
-  await page.waitForFunction(() => (window as any).__cinematicReady === true, { timeout: 60_000 });
+  // Wait for the renderer to signal it has mounted, loaded images, and built the
+  // timeline. Use a manual evaluate-poll rather than page.waitForFunction —
+  // waitForFunction's injected polling can stall under single-process Chromium
+  // builds, whereas a plain evaluate loop is reliable everywhere.
+  const readyDeadline = Date.now() + 60_000;
+  let ready = false;
+  while (Date.now() < readyDeadline) {
+    ready = await page.evaluate(() => (window as any).__cinematicReady === true);
+    if (ready) break;
+    await page.waitForTimeout(250);
+  }
+  if (!ready) {
+    throw new Error("renderer did not become ready within 60s (window.__cinematicReady)");
+  }
 
   return { browser, page, server, baseUrl };
 }
