@@ -104,7 +104,18 @@ async function openRenderer(
     baseUrl = `http://127.0.0.1:${started.port}/`;
   }
 
-  const browser = await chromium.launch({ args: ["--force-color-profile=srgb"] });
+  const browser = await chromium.launch({
+    // Allow pointing at a system / alternative Chromium when the Playwright
+    // browser download isn't available (set PLAYWRIGHT_CHROMIUM_EXECUTABLE, and
+    // optionally PLAYWRIGHT_CHROMIUM_ARGS for extra launch flags).
+    executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined,
+    args: [
+      "--force-color-profile=srgb",
+      ...(process.env.PLAYWRIGHT_CHROMIUM_ARGS
+        ? process.env.PLAYWRIGHT_CHROMIUM_ARGS.split(/\s+/).filter(Boolean)
+        : []),
+    ],
+  });
   const page = await browser.newPage({
     viewport: { width, height },
     deviceScaleFactor: 1,
@@ -178,7 +189,9 @@ export async function record(opts: RecordOptions): Promise<string> {
     opts.out,
   );
 
-  const ffmpeg = spawn("ffmpeg", ffmpegArgs, { stdio: ["pipe", "inherit", "inherit"] });
+  // FFMPEG_PATH lets you point at a specific ffmpeg binary (e.g. ffmpeg-static).
+  const ffmpegBin = process.env.FFMPEG_PATH || "ffmpeg";
+  const ffmpeg = spawn(ffmpegBin, ffmpegArgs, { stdio: ["pipe", "inherit", "inherit"] });
   const ffmpegDone = new Promise<void>((resolve, reject) => {
     ffmpeg.on("error", (e) =>
       reject(new Error(`ffmpeg failed to start (is it installed?): ${e.message}`)),
