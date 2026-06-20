@@ -121,7 +121,10 @@ async function openRenderer(
     deviceScaleFactor: 1,
   });
   const recordUrl = baseUrl + (baseUrl.includes("?") ? "&" : "?") + "recordMode=1";
-  await page.goto(recordUrl, { waitUntil: "networkidle", timeout: 60_000 });
+  // Use "load" rather than "networkidle": the renderer signals true readiness via
+  // window.__cinematicReady (after fonts + images settle), and networkidle can
+  // hang indefinitely behind blocked/keep-alive requests (e.g. webfonts).
+  await page.goto(recordUrl, { waitUntil: "load", timeout: 60_000 });
   // Wait for the renderer to signal it has mounted, loaded images, and built the timeline.
   await page.waitForFunction(() => (window as any).__cinematicReady === true, { timeout: 60_000 });
 
