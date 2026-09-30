@@ -1,0 +1,11 @@
+node_modules/
+dist/
+renders/
+*.log
+.DS_Store
+.env
+
+# local render/debug scratch
+/diag.*
+/render-demo.mjs
+/timing.*
