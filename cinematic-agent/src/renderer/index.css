@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0c;
+  --fg: #f5f3ee;
+  --accent: #c8a24a;
+  --muted: #6b6a66;
+  /* camera vars, animated by GSAP per scene */
+  --cam-x: 0;
+  --cam-y: 0;
+  --cam-z: 0;
+  --cam-s: 1;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.cinematic-root {
+  position: relative;
+  width: 100vw;
+  background: var(--bg);
+}
+
+/* Each scene is a fixed full-viewport layer; GSAP cross-fades between them. */
+.scene {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  /* perspective lives on the scene so the camera's translateZ reads as depth */
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  will-change: opacity;
+}
+
+.scene-camera {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: translate3d(
+      calc(var(--cam-x) * 1%),
+      calc(var(--cam-y) * 1%),
+      calc(var(--cam-z) * 1px)
+    )
+    scale(var(--cam-s));
+  will-change: transform;
+}
+
+.scene-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6vw;
+  transform-style: preserve-3d;
+}
+
+/* --- copy --- */
+.copy-block {
+  max-width: 60rem;
+  z-index: 3;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: clamp(0.7rem, 1vw, 0.95rem);
+  color: var(--accent);
+  margin: 0 0 1.2rem;
+}
+.headline {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6.5vw, 6rem);
+  line-height: 1.02;
+  margin: 0;
+  color: var(--fg);
+}
+.subhead {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  color: var(--fg);
+  opacity: 0.85;
+  margin: 1.6rem auto 0;
+  max-width: 42rem;
+}
+.body {
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: var(--muted);
+  margin: 1.2rem auto 0;
+  max-width: 38rem;
+  line-height: 1.6;
+}
+
+/* --- hero --- */
+.hero-bg {
+  position: absolute;
+  inset: -8% -8%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--bg) 35%, transparent),
+    color-mix(in srgb, var(--bg) 78%, transparent)
+  );
+}
+.hero-copy {
+  position: relative;
+  z-index: 3;
+}
+
+/* --- parallax reveal --- */
+.parallax-scene {
+  flex-direction: row;
+  gap: 3vw;
+  flex-wrap: wrap;
+}
+.parallax-card {
+  position: relative;
+  flex: 1 1 32%;
+  min-width: 18rem;
+  max-width: 34rem;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+.parallax-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.parallax-placeholder {
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, var(--muted) 40%, var(--bg));
+}
+.parallax-card .caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.parallax-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8vh;
+  z-index: 4;
+}
+
+/* --- stats grid --- */
+.stats-scene {
+  gap: 3rem;
+}
+.stats-grid {
+  display: grid;
+  gap: 2.5rem 4rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+.stats-grid[data-count="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.stats-grid[data-count="4"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.stat-value {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* --- cta --- */
+.cta-button {
+  display: inline-block;
+  margin-top: 2.4rem;
+  padding: 1rem 2.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* --- effect overlays --- */
+.fx-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 45%,
+    rgba(0, 0, 0, 0.85) 130%
+  );
+}
+.fx-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+}
+.fx-bloom {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    color-mix(in srgb, var(--accent) 50%, transparent),
+    transparent 60%
+  );
+}
+
+/* Live-mode scroll range. Record mode hides body overflow so this is inert. */
+.scroll-spacer {
+  width: 1px;
+  pointer-events: none;
+}
