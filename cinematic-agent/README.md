@@ -47,6 +47,29 @@ run.log
 | `--audio <path>` | — | soundtrack override |
 | `--skip a,b,c` | — | skip stages: `scrape,pre-gate,agent,critique,build,record` |
 
+## Render the reference baseline (no API key)
+
+A ready-made director plan for the reference site lives at
+`examples/goatmezmedia.scene-script.json` (self-contained — inline gradient
+assets, no network needed). Render it to MP4 without any Anthropic key:
+
+```bash
+npm install
+npx playwright install chromium        # needs a real browser + ffmpeg on PATH
+npm run build
+mkdir -p renders/goatmez/site
+cp -r dist/* renders/goatmez/site/
+cp examples/goatmezmedia.scene-script.json renders/goatmez/site/scene-script.json
+npm run record -- \
+  --dir renders/goatmez/site \
+  --script examples/goatmezmedia.scene-script.json \
+  --out renders/goatmez/cinematic.mp4
+```
+
+> The recorder honors `PLAYWRIGHT_CHROMIUM_EXECUTABLE` / `PLAYWRIGHT_CHROMIUM_ARGS`
+> (point at a system Chrome) and `FFMPEG_PATH` (point at a specific ffmpeg) when
+> a downloaded Playwright browser isn't available.
+
 ## Stage-by-stage (debugging)
 
 ```bash

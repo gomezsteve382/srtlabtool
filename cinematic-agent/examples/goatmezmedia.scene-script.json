@@ -1,0 +1,193 @@
+{
+  "version": "2",
+  "meta": {
+    "sourceUrl": "https://goatmezmedia.com",
+    "title": "Goatmez Media",
+    "mood": "dramatic"
+  },
+  "palette": {
+    "background": "#0a0a0c",
+    "foreground": "#f5f3ee",
+    "accent": "#c8a24a",
+    "muted": "#6b6a66"
+  },
+  "assets": [
+    {
+      "id": "hero",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAwJyBoZWlnaHQ9JzEyMDAnPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0nZycgY3g9JzM1JScgY3k9JzMwJScgcj0nOTUlJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjMWIxZDI2Jy8+PHN0b3Agb2Zmc2V0PSc1NSUnIHN0b3AtY29sb3I9JyMwZDBlMTQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMwNTA1MDcnLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSd1cmwoI2cpJy8+PGNpcmNsZSBjeD0nNTIwJyBjeT0nMzYwJyByPScyNjAnIGZpbGw9JyNjOGEyNGEnIG9wYWNpdHk9JzAuMTAnLz48Y2lyY2xlIGN4PScxMTgwJyBjeT0nODYwJyByPSczNDAnIGZpbGw9JyM1YTZiN2EnIG9wYWNpdHk9JzAuMTAnLz48L3N2Zz4=",
+      "role": "background"
+    },
+    {
+      "id": "w1",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAwJyBoZWlnaHQ9JzEyMDAnPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nYScgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzEnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyMzYTRhNWUnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMxMTE2MWYnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSd1cmwoI2EpJy8+PC9zdmc+",
+      "role": "feature"
+    },
+    {
+      "id": "w2",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAwJyBoZWlnaHQ9JzEyMDAnPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nYicgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzEnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyNjOGEyNGEnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMyYTFjMGEnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSd1cmwoI2IpJy8+PC9zdmc+",
+      "role": "feature"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hero",
+      "durationSec": 6,
+      "copy": {
+        "eyebrow": "Goatmez Media",
+        "headline": "Stories worth the screen.",
+        "subhead": "A production studio for brands that want to be felt."
+      },
+      "camera": {
+        "from": {
+          "x": 0,
+          "y": 0,
+          "scale": 1.15,
+          "z": -900
+        },
+        "to": {
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "z": 0
+        },
+        "easing": "expo.out"
+      },
+      "transition": {
+        "in": "fade",
+        "out": "fade"
+      },
+      "effects": {
+        "bloom": 0.22,
+        "grain": 0.18,
+        "vignette": 0.4
+      },
+      "type": "hero",
+      "backgroundAssetId": "hero",
+      "depth": 0.6
+    },
+    {
+      "id": "work",
+      "durationSec": 7,
+      "copy": {
+        "eyebrow": "Selected work",
+        "headline": "Frames that move people."
+      },
+      "camera": {
+        "from": {
+          "x": 0,
+          "y": 28,
+          "scale": 1,
+          "z": -380
+        },
+        "to": {
+          "x": 0,
+          "y": -18,
+          "scale": 1.05,
+          "z": 0
+        },
+        "easing": "power3.inOut"
+      },
+      "transition": {
+        "in": "blur-in",
+        "out": "slide-up"
+      },
+      "effects": {
+        "grain": 0.14,
+        "vignette": 0.3
+      },
+      "type": "parallax_reveal",
+      "layers": [
+        {
+          "assetId": "w1",
+          "depth": 0.8,
+          "caption": "Brand film"
+        },
+        {
+          "assetId": "w2",
+          "depth": 0.4,
+          "caption": "Music video"
+        }
+      ]
+    },
+    {
+      "id": "stats",
+      "durationSec": 5,
+      "copy": {
+        "eyebrow": "Track record",
+        "headline": "Built on results."
+      },
+      "camera": {
+        "from": {
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "z": -200
+        },
+        "to": {
+          "x": 0,
+          "y": 0,
+          "scale": 1.03,
+          "z": 0
+        },
+        "easing": "power2.out"
+      },
+      "transition": {
+        "in": "slide-up",
+        "out": "fade"
+      },
+      "effects": {
+        "vignette": 0.22
+      },
+      "type": "stats_grid",
+      "stats": [
+        {
+          "value": "120+",
+          "label": "Films delivered"
+        },
+        {
+          "value": "40M",
+          "label": "Views driven"
+        },
+        {
+          "value": "12",
+          "label": "Awards"
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "durationSec": 5,
+      "copy": {
+        "eyebrow": "Let's make something",
+        "headline": "Start a project.",
+        "subhead": "Tell us what you want the world to feel."
+      },
+      "camera": {
+        "from": {
+          "x": 0,
+          "y": 0,
+          "scale": 1.08,
+          "z": -300
+        },
+        "to": {
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "z": 0
+        },
+        "easing": "expo.out"
+      },
+      "transition": {
+        "in": "scale-in",
+        "out": "fade"
+      },
+      "effects": {
+        "bloom": 0.3,
+        "vignette": 0.45
+      },
+      "type": "cta",
+      "buttonLabel": "Start a project",
+      "href": "https://goatmezmedia.com/contact"
+    }
+  ]
+}
