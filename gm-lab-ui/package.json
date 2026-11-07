@@ -19,22 +19,22 @@
   },
   "dependencies": {
     "fflate": "^0.8.2",
-    "lucide-react": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "lucide-react": "^0.545.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "catalog:",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
     "jsdom": "^29.0.2",
     "typescript": "~5.9.2",
-    "vite": "catalog:",
+    "vite": "^7.3.0",
     "vitest": "^4.1.4"
   }
 }
