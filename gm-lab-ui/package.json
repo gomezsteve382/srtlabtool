@@ -1,0 +1,40 @@
+{
+  "name": "@workspace/gm-lab-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.ts --host 0.0.0.0",
+    "build": "vite build --config vite.config.ts",
+    "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "codegen:keyalg": "node scripts/generate-keyalg-luts.mjs",
+    "codegen:keyalg:check": "node scripts/generate-keyalg-luts.mjs --check",
+    "codegen:dllsec": "node scripts/generate-dllsec-tablec.mjs",
+    "codegen:dllsec:check": "node scripts/generate-dllsec-tablec.mjs --check",
+    "codegen:applets": "node scripts/generate-applet-catalog.mjs",
+    "codegen:applets:check": "node scripts/generate-applet-catalog.mjs --check"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "jsdom": "^29.0.2",
+    "typescript": "~5.9.2",
+    "vite": "catalog:",
+    "vitest": "^4.1.4"
+  }
+}
