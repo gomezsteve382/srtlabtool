@@ -60,15 +60,30 @@ export function DashboardTab() {
   return (
     <div className="fade-in" data-testid="dashboard-tab">
       <section className="hero">
-        <h1>
-          GM LAB <span style={{ color: 'var(--blue-400)' }}>— every decoded GM lane, one bench screen.</span>
-        </h1>
-        <p className="lead">
-          The estate&apos;s GM twin of the SRT Lab: security console over every decoded algorithm,
-          VIN / mileage / marry capability from the mined applet corpus, SPS emulator lane, and the
-          J2534 bridge on :8765. Compute only from real tables — provenance on every key.
-        </p>
-        <HeroShot />
+        <div className="hero-copy">
+          <div className="hero-kicker">GM BENCH CONTROL · ESTATE TWIN</div>
+          <h1>
+            GM LAB
+            <span>Every decoded GM lane. One bench screen.</span>
+          </h1>
+          <p className="lead">
+            Security, VIN, mileage, marry, key programming and SPS analysis across the
+            estate&apos;s decoded GM stack — with provenance on every result and the
+            J2534 bridge kept local to the bench.
+          </p>
+          <div className="hero-meta">
+            <span className="hero-chip"><b>12</b> WORKSPACES</span>
+            <span className="hero-chip"><b>J2534</b> LOCAL BRIDGE</span>
+            <span className="hero-chip"><b>REAL</b> TABLES ONLY</span>
+          </div>
+        </div>
+        <div className="hero-stage">
+          <div className="hero-stage-label">
+            FULL-SIZE GM PLATFORM
+            <span>BENCH PROFILE</span>
+          </div>
+          <HeroShot />
+        </div>
       </section>
 
       <div className="glass">
