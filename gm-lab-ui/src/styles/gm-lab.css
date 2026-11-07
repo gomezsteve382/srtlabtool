@@ -234,3 +234,421 @@ table.data tr:hover td { background: var(--white-tint2); }
 
 .fade-in { animation: fadeIn var(--t-med) ease both; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+
+/* ==========================================================================
+   GOATMEZ UI PASS 01
+   Premium bench-control layout. Presentation only — no GM engine changes.
+   ========================================================================== */
+
+.content {
+  padding: 28px 32px 88px;
+}
+
+.fade-in {
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+/* ── LEFT RAIL ─────────────────────────────────────────────────────────── */
+
+.rail {
+  width: 246px;
+  flex-basis: 246px;
+  background:
+    radial-gradient(360px 240px at 0 0, rgba(30, 111, 224, 0.1), transparent 65%),
+    linear-gradient(180deg, #080b12 0%, #05070c 100%);
+}
+
+.wordmark {
+  padding: 22px 18px 13px;
+}
+
+.wordmark .gm-tile {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 8px 24px rgba(30,111,224,.34);
+}
+
+.rail-sub {
+  padding: 0 18px 15px;
+}
+
+.rail-nav {
+  padding: 0 8px;
+  gap: 4px;
+}
+
+.rail-btn {
+  min-height: 40px;
+  align-items: center;
+  border: 1px solid transparent;
+  padding: 9px 12px;
+}
+
+.rail-btn.active {
+  border-color: rgba(78,155,255,.14);
+  background:
+    linear-gradient(90deg, rgba(30,111,224,.18), rgba(30,111,224,.035) 72%, transparent);
+  box-shadow:
+    inset 3px 0 0 var(--blue-400),
+    inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+/* ── HERO ──────────────────────────────────────────────────────────────── */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(380px, .9fr) minmax(570px, 1.25fr);
+  align-items: center;
+  gap: 18px;
+  min-height: 430px;
+  padding: 42px 46px;
+  background:
+    radial-gradient(700px 360px at 79% 48%, rgba(30,111,224,.19), transparent 67%),
+    radial-gradient(520px 280px at 15% 0%, rgba(78,155,255,.09), transparent 70%),
+    linear-gradient(145deg, #111b2b 0%, #0a111c 40%, #05080e 100%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.075),
+    inset 0 -1px 0 rgba(78,155,255,.06);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-kicker {
+  margin-bottom: 13px;
+  color: var(--blue-300);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(39px, 3.25vw, 56px);
+  line-height: .97;
+  letter-spacing: -.035em;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--white-100);
+}
+
+.hero h1 span {
+  display: block;
+  margin-top: 10px;
+  color: var(--blue-400);
+  font-size: .54em;
+  line-height: 1.08;
+  letter-spacing: -.018em;
+}
+
+.hero p.lead {
+  margin: 20px 0 0;
+  max-width: 590px;
+  color: var(--white-300);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 31px;
+  padding: 6px 10px;
+  border: 1px solid rgba(143,193,255,.13);
+  border-radius: 9px;
+  background: rgba(4,6,11,.46);
+  color: var(--white-400);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .09em;
+}
+
+.hero-chip b {
+  color: var(--blue-300);
+  font-size: 11px;
+}
+
+.hero-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 330px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 38px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(30,111,224,.25),
+    rgba(30,111,224,.07) 42%,
+    transparent 70%
+  );
+  filter: blur(14px);
+}
+
+.hero-stage-label {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 8px;
+  color: var(--white-400);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-align: right;
+}
+
+.hero-stage-label span {
+  display: block;
+  margin-top: 3px;
+  color: var(--blue-400);
+}
+
+.hero .hero-art {
+  position: relative;
+  z-index: 2;
+  width: 112%;
+  max-width: none;
+  margin: 0 -6% -8px;
+}
+
+/* ── PANELS ────────────────────────────────────────────────────────────── */
+
+.glass {
+  border-color: rgba(143,193,255,.13);
+  background:
+    linear-gradient(145deg, rgba(18,25,38,.89), rgba(7,10,16,.91)),
+    var(--glass-bg);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 12px 34px rgba(0,0,0,.27);
+}
+
+.glass h2 {
+  letter-spacing: -.012em;
+}
+
+.grid-2 > .glass + .glass,
+.grid-3 > .glass + .glass {
+  margin-top: 0;
+}
+
+/* ── CONTROLS ──────────────────────────────────────────────────────────── */
+
+input[type='text'],
+input[type='number'],
+select,
+textarea {
+  min-height: 36px;
+  background:
+    linear-gradient(180deg, rgba(5,8,14,.88), rgba(3,5,9,.78));
+  border-color: rgba(124,139,165,.32);
+}
+
+button.btn {
+  min-height: 36px;
+  border-radius: 9px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.19),
+    0 5px 16px rgba(17,87,194,.18);
+}
+
+button.btn.ghost {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+button.btn.danger {
+  border-color: rgba(239,83,80,.48);
+  background: rgba(198,40,40,.1);
+  color: var(--red-400);
+  box-shadow: none;
+}
+
+/* ── TABLES ────────────────────────────────────────────────────────────── */
+
+table.data th {
+  background: rgba(9,13,21,.88);
+  backdrop-filter: blur(8px);
+}
+
+table.data tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,.009);
+}
+
+/* ── KEYS TAB ──────────────────────────────────────────────────────────── */
+
+.keys-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.keys-stack > .glass {
+  margin-top: 0;
+}
+
+.keys-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.keys-head h2 {
+  margin: 0;
+}
+
+.keys-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.keys-toolbar select {
+  flex: 1 1 520px;
+  width: auto;
+}
+
+.keys-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--white-300);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+.keys-copy {
+  margin: 0 0 16px;
+  max-width: 1100px;
+  color: var(--white-400);
+  line-height: 1.58;
+}
+
+.keys-range {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.keys-range label:not(.keys-go) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--white-300);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.keys-range input[type="text"] {
+  width: 88px;
+}
+
+.keys-law {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--white-400);
+  font-size: 12px;
+  line-height: 1.58;
+}
+
+.keys-law li + li {
+  margin-top: 8px;
+}
+
+.keys-law strong {
+  color: var(--white-200);
+}
+
+.keys-law code {
+  color: var(--blue-300);
+  font-family: var(--font-mono);
+}
+
+.keys-log {
+  min-height: 72px;
+  max-height: 310px;
+}
+
+.text-blue-300 { color: var(--blue-300); }
+.text-amber-300 { color: var(--amber-400); }
+.text-red-300,
+.text-red-400 { color: var(--red-400); }
+.text-emerald-300 { color: var(--green-400); }
+.text-slate-200 { color: var(--white-200); }
+.text-slate-300 { color: var(--white-300); }
+.text-slate-400 { color: var(--white-400); }
+.text-slate-500,
+.text-slate-600 { color: #5f6d84; }
+
+@media (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 34px;
+  }
+
+  .hero-stage {
+    min-height: 270px;
+  }
+
+  .hero .hero-art {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 780px) {
+  .rail {
+    width: 210px;
+    flex-basis: 210px;
+  }
+
+  .content {
+    padding: 20px 18px 70px;
+  }
+
+  .hero {
+    padding: 26px;
+  }
+}
