@@ -143,91 +143,117 @@ export function KeysTab() {
   }
 
   return (
-    <div className="space-y-5">
-      {/* ─── KEY LEARN ─── */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          <h2 className="text-sm font-bold tracking-widest text-blue-300">KEY LEARN — CEREMONY PLAYER</h2>
+    <div className="keys-stack fade-in">
+      <section className="glass">
+        <div className="keys-head">
+          <h2>KEY LEARN — CEREMONY PLAYER</h2>
           <VerdictPill state="amber">UNVERIFIED-LIVE</VerdictPill>
+          <VerdictPill state={bridgeUp ? 'green' : 'gray'}>
+            {bridgeUp ? 'BRIDGE OK' : 'BRIDGE DOWN'}
+          </VerdictPill>
         </div>
-        <div className="mb-3 flex flex-wrap items-center gap-2">
-          <select
-            className="rounded border border-slate-700 bg-slate-900 px-2 py-1.5 text-xs text-slate-200"
-            value={rowId}
-            onChange={(e) => setRowId(e.target.value)}
-          >
+
+        <div className="keys-toolbar">
+          <select value={rowId} onChange={(e) => setRowId(e.target.value)}>
             {CEREMONY_ROWS.map((r) => (
-              <option key={r.id} value={r.id}>{r.label}</option>
+              <option key={r.id} value={r.id}>
+                {r.label}
+              </option>
             ))}
           </select>
-          <label className="flex items-center gap-1.5 text-xs text-slate-400">
+
+          <label className="keys-go">
             <input type="checkbox" checked={goCer} onChange={(e) => setGoCer(e.target.checked)} />
-            OPERATOR GO (wire fires)
+            OPERATOR GO
           </label>
-          <button
-            className="rounded bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-40"
-            disabled={!bridgeUp || !goCer || cerBusy}
-            onClick={runCeremony}
-          >
-            RUN ADD-KEY AUTO
+
+          <button className="btn" disabled={!bridgeUp || !goCer || cerBusy} onClick={runCeremony}>
+            {cerBusy ? 'RUNNING…' : 'RUN ADD-KEY AUTO'}
           </button>
-          <button
-            className="rounded border border-slate-600 px-3 py-1.5 text-xs font-semibold text-slate-300 disabled:opacity-40"
-            disabled={cerBusy}
-            onClick={runCeremonyRecycle}
-          >
-            DRY-RUN RECYCLE CEREMONY
+
+          <button className="btn ghost" disabled={cerBusy} onClick={runCeremonyRecycle}>
+            DRY-RUN RECYCLE
           </button>
         </div>
+
         <LogBox lines={cerLog} />
       </section>
 
-      {/* ─── BRUTE FORCE ─── */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          <h2 className="text-sm font-bold tracking-widest text-blue-300">BRUTE FORCE — LAST-RESORT LANE</h2>
+      <section className="glass">
+        <div className="keys-head">
+          <h2>BRUTE FORCE — LAST-RESORT LANE</h2>
           <VerdictPill state="blue">CUSTOM-ECM LAW · IN-HOUSE</VerdictPill>
         </div>
-        <p className="mb-3 text-xs leading-relaxed text-slate-500">
-          The banked Custom-ECM architecture: live seed → candidate key → 27 send → check → respect the delay law → repeat.
-          Use only when NO decoded algo covers the module's gate — for covered modules the SECURITY CONSOLE computes the key
-          directly. Range is bounded to the full 16-bit space; delay law is non-negotiable.
+
+        <p className="keys-copy">
+          The banked Custom-ECM architecture: live seed → candidate key → 27 send →
+          check → respect the delay law → repeat. Use only when no decoded algorithm
+          covers the module&apos;s gate. Covered modules should use SECURITY CONSOLE.
         </p>
-        <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-slate-300">
-          <label>FROM <input className="w-16 rounded border border-slate-700 bg-slate-900 px-2 py-1" value={bfStart} onChange={(e) => setBfStart(e.target.value)} /></label>
-          <label>TO <input className="w-16 rounded border border-slate-700 bg-slate-900 px-2 py-1" value={bfEnd} onChange={(e) => setBfEnd(e.target.value)} /></label>
-          <label className="flex items-center gap-1.5 text-slate-400">
+
+        <div className="keys-range">
+          <label>
+            FROM
+            <input type="text" value={bfStart} onChange={(e) => setBfStart(e.target.value)} />
+          </label>
+
+          <label>
+            TO
+            <input type="text" value={bfEnd} onChange={(e) => setBfEnd(e.target.value)} />
+          </label>
+
+          <label className="keys-go">
             <input type="checkbox" checked={goBf} onChange={(e) => setGoBf(e.target.checked)} />
             OPERATOR GO
           </label>
-          <button
-            className="rounded bg-blue-600 px-3 py-1.5 font-semibold text-white disabled:opacity-40"
-            disabled={!bridgeUp || !goBf || bfBusy}
-            onClick={runBrute}
-          >
-            START
+
+          <button className="btn" disabled={!bridgeUp || !goBf || bfBusy} onClick={runBrute}>
+            {bfBusy ? 'RUNNING…' : 'START'}
           </button>
+
           <button
-            className="rounded border border-red-700 px-3 py-1.5 font-semibold text-red-300 disabled:opacity-40"
+            className="btn danger"
             disabled={!bfBusy}
-            onClick={() => { stopRef.current = true; }}
+            onClick={() => {
+              stopRef.current = true;
+            }}
           >
             STOP
           </button>
+
           {bfHit && <VerdictPill state="green">{`HIT ${bfHit}`}</VerdictPill>}
         </div>
+
         <LogBox lines={bfLog} />
       </section>
 
-      {/* ─── THE LAW ─── */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-        <h2 className="mb-3 text-sm font-bold tracking-widest text-blue-300">THE LAW — RECEIPTS THIS TAB IS BUILT ON</h2>
-        <ul className="space-y-2 text-xs leading-relaxed text-slate-400">
-          <li>· <b className="text-slate-200">Custom-ECM architecture</b> (decompiled GMPINFinder): live seed → candidate → 27 send → check → respect delay-NRC → report → repeat. In-house replication = sequential enumeration; our decoded algos replace the candidate loop for covered modules.</li>
-          <li>· <b className="text-slate-200">SKA2/SSA immobilizer tier</b>: tech2.dll + sasbridge.dll + scan100.dll all import <code className="text-blue-300">dllsecurity!SetSeedAndGetKey</code> — the triple-cracked engine. Immobilizer local key step is ours; per-VIN codes ride GM's server (entitlement).</li>
-          <li>· <b className="text-slate-200">Recycle ceremony</b>: EXECUTED-LIVE-HW Sept (junkyard module, PIN=0000): virginize → 11-min → clear DTCs → clear VIN → clear prog date → clear PIN → 30-sec ignition-off → re-admit.</li>
-          <li>· <b className="text-slate-200">PIN oracle</b>: 2^20 IM608 table, decode-and-match only (K_RULING) — PIN tab.</li>
-          <li>· <b className="text-slate-200">GMLAN dialect</b>: RDBI 0x1A / WDBI 0x3B / SA 0x27 — not ISO 22/2E (tisvcsv4 Wave-3).</li>
+      <section className="glass">
+        <div className="keys-head">
+          <h2>THE LAW — RECEIPTS THIS TAB IS BUILT ON</h2>
+        </div>
+
+        <ul className="keys-law">
+          <li>
+            <strong>Custom-ECM architecture:</strong> live seed → candidate →
+            security send → verdict → delay handling → repeat.
+          </li>
+          <li>
+            <strong>SKA2 / SSA immobilizer tier:</strong>{' '}
+            <code>dllsecurity!SetSeedAndGetKey</code> remains the local security
+            calculation layer; entitlement-backed material stays outside this UI.
+          </li>
+          <li>
+            <strong>Recycle ceremony:</strong> operator-timed module preparation
+            sequence with explicit hold steps and verification.
+          </li>
+          <li>
+            <strong>PIN oracle:</strong> decode-and-match workflow remains isolated
+            to the PIN workspace.
+          </li>
+          <li>
+            <strong>GMLAN dialect:</strong> legacy GM service shapes remain distinct
+            from the newer UDS lanes.
+          </li>
         </ul>
       </section>
     </div>
@@ -240,10 +266,15 @@ const hex4 = (n: number) => '0x' + n.toString(16).toUpperCase().padStart(3, '0')
 
 function LogBox({ lines }: { lines: LogLine[] }) {
   if (!lines.length) {
-    return <div className="rounded-lg border border-slate-800 bg-black/60 p-3 font-mono text-xs text-slate-600">no output — GO gate + bridge required</div>;
+    return (
+      <div className="logbox keys-log">
+        no output — GO gate + bridge required
+      </div>
+    );
   }
+
   return (
-    <div className="max-h-80 overflow-y-auto rounded-lg border border-slate-800 bg-black/60 p-3 font-mono text-xs leading-relaxed">
+    <div className="logbox keys-log">
       {lines.map((l, i) => (
         <div key={i} className={l.cls}>
           <span className="text-slate-600">{l.t} </span>
