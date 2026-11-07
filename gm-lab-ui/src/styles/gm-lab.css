@@ -652,3 +652,51 @@ table.data tbody tr:nth-child(even) td {
     padding: 26px;
   }
 }
+
+
+/* ── ESCALADE-V SHOWROOM TURNTABLE ───────────────────────────────────── */
+
+.hero-art-showroom {
+  overflow: visible;
+  filter: drop-shadow(0 18px 34px rgba(0,0,0,.42));
+}
+
+.hero-art-showroom .showroom-ring-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: showroomOrbit 9s linear infinite;
+}
+
+.hero-art-showroom .showroom-ring-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: showroomPulse 2.8s ease-in-out infinite;
+}
+
+.hero-art-showroom .escalade-v {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: escaladeFloat 5.5s ease-in-out infinite;
+}
+
+@keyframes showroomOrbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes showroomPulse {
+  0%, 100% { opacity: .12; transform: scale(.985); }
+  50% { opacity: .34; transform: scale(1.018); }
+}
+
+@keyframes escaladeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art-showroom .showroom-ring-spin,
+  .hero-art-showroom .showroom-ring-pulse,
+  .hero-art-showroom .escalade-v {
+    animation: none;
+  }
+}
